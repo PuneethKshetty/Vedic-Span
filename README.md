@@ -1,14 +1,15 @@
 This is a internship project done in a team
 
-Company Name : Vedic Span <br>
-Project Name : Web - Scraper <br>
-Description : This is a web application which scrapes the data from the websites like email,phone number and stores them in a CSV file.
-Usage :
-Business purpose
-Paywall 
+* Company Name : Vedic Span <br>
+* Project Name : Web - Scraper <br>
+* Description : This is a web application which scrapes the data from the websites like email,phone number and stores them in a CSV file.
 
-Tech stack used:
-HTML
-Flask
+* Usage :
+1. Business purpose
+2. Paywall 
 
-Software : Figma (for UI design)
+* Tech stack used:
+1. HTML
+2. Flask
+
+* Other Software : Figma (for UI design)
