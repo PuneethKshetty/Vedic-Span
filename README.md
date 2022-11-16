@@ -8,3 +8,9 @@ This is a web application which scrapes the data from the websites like email,ph
 Usage :
 Business purpose
 Paywall 
+
+Tech stack used:
+HTML
+Flask
+
+Software : Figma (for UI design)
