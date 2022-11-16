@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+
+      .container {
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .about {
+        text-align: center;
+        padding-bottom: 75px;
+      }
+
+      .form-table-container {
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .form-heading {
+        padding-bottom: 20px;
+        /* text-align: center; */
+      }
+
+      .url-form {
+        width: 100%;
+        display: flex;
+        /* flex-direction: column; */
+        /* justify-content: space-around; */
+        /* align-items: stretch; */
+      }
+
+      .url-form input[type='text'] {
+        flex: 2;
+        /* border-radius: 2px; */
+        border: 3px solid #d3d3d3;
+        padding: 7px 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        width: 300px;
+        /* margin: 0px 10px; */
+      }
+
+      .url-form [type='submit'] {
+        flex: 1;
+        background-color: #28a745;
+        background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+        color: white;
+        padding: 0px 0px;
+        border-radius: 5px;
+        /* display: flex;
+      	flex-direction: column; */
+      }
+
+      .url-form [type='submit']:hover {
+        cursor: pointer;
+        filter: brightness(103%);
+      }
+
+      .form-hint {
+        margin-top: 5px;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+        color: #737373;
+        /* text-align: left; */
+      }
+
+      .separator {
+        margin: 10px 0px;
+        border-top: 1px solid black;
+        width: 100%;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px black solid;
+        border-collapse: collapse;
+      }
+
+      table {
+        /* width: 100%; */
+        margin-bottom: 25px;
+      }
+
+      th,
+      td {
+        padding: 5px 15px;
+      }
+
+      th {
+        background-color: #414141;
+        color: white;
+      }
+
+      .result-status {
+        /* text-align: center; */
+        padding-bottom: 10px;
+      }
+
+      .result-table {
+        width: 100%;
+      }
+
+      .gen-csv-button {
+        background-color: #28a745;
+        background-image: linear-gradient(-180deg, #34d058, #28a745 90%);
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        /* text-align: center; */
+      }
+
+      .gen-csv-button:hover {
+        cursor: pointer;
+        filter: brightness(103%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="about">
+        <h1>Email and Phone Extractor Online</h1>
+        <p>
+          Extract Email and Phone Numbers by crawling Websites.<br />
+          An algorithm that extracts Email and Phone Numbers from any websites.
+        </p>
+      </div>
+
+      <div class="form-table-container">
+        <h3 class="form-heading">Input URL</h3>
+        <form action="#" method="post" class="url-form">
+          <input type="text" placeholder="Enter the URL" name="url-input" />
+          <input type="submit" value="Get Result!" />
+        </form>
+        <p class="form-hint">Note : Enter multiple url's seperated by ","</p>
+
+        <hr class="separator" />
+
+        {% if status == -1 %}
+        <p class="result-status">Enter URL</p>
+        {% elif status == 1 %}
+        <p class="result-status">Invalid URL ❌</p>
+        {% elif status == 2 %}
+        <p class="result-status">Sorry, We could’nt scrape the website 😔</p>
+        {% else %}
+        <p class="result-status">Results fetched ✅</p>
+        <table class="result-table">
+          <tr>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
+          {% for i in range(maxlen) %}
+          <tr>
+            <td>{{ data['phoneList'][i] }}</td>
+            <td>{{ data['emailList'][i] }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+        <a
+          class="gen-csv-button"
+          href="{{ url_for('download', filename='result.csv') }}"
+          >Download CSV</a
+        >
+        <!-- <a class="gen-csv-button" href="../result.csv" download="result.csv">Download CSV</a> -->
+        {% endif %}
+      </div>
+    </div>
+    <script></script>
+  </body>
+</html>
